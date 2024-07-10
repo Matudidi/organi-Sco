@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Organi'Sco - Messagerie</title>
+    <style>
+        /* ... (Existing styles) ... */
+
+        /* Styles for the video call UI */
+        #video-call-container {
+            display: none; /* Hide by default */
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        #video-call-container .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 5px;
+        }
+
+        #video-call-container video {
+            width: 100%;
+            height: 300px;
+        }
+
+        #video-call-container .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        #video-call-container button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #video-call-container #hangup-button {
+            background-color: red;
+            color: white;
+        }
+
+        #video-call-container #mute-button {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Organi'Sco</h1>
+        <nav>
+            <ul>
+                <li><a href="calendrier.html">Calendrier</a></li>
+                <li><a href="gestionDevoir.html">Devoirs</a></li>
+                <li><a href="planificateur.html">Planificateur</a></li>
+                <li><a href="resource.html">Ressources</a></li>
+                <li><a href="collaboration.html">Collaboration</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="messaging-container">
+            <h2>Messagerie</h2>
+            <div id="search-bar">
+                <input type="text" id="search-input" placeholder="Rechercher des messages ou des contacts">
+            </div>
+            <div id="contact-list">
+                <h3>Contacts</h3>
+                <ul>
+                    <li><img src="https://via.placeholder.com/40" alt="Contact 1"> Contact 1 <span id="presence-indicator-1" class="online"></span></li>
+                    <li><img src="https://via.placeholder.com/40" alt="Contact 2"> Contact 2 <span id="presence-indicator-2" class="offline"></span></li>
+                    <li><img src="https://via.placeholder.com/40" alt="Contact 3"> Contact 3 <span id="presence-indicator-3" class="online"></span></li>
+                </ul>
+            </div>
+            <div id="chat-area">
+                <div id="chat-header">
+                    <h3>Chat avec Contact 1</h3>
+                    <button id="add-contact-button">Ajouter un contact</button>
+                    <button id="group-chat-button">Créer un groupe</button>
+                    <button id="audio-call-button">Appel audio</button>
+                    <button id="video-call-button">Appel vidéo</button>
+                    <button id="screen-share-button">Partage d'écran</button>
+                </div>
+                <ul id="message-list"></ul>
+                <div id="input-area">
+                    <input type="text" id="input-text" placeholder="Entrez votre message">
+                    <button id="send-button">Envoyer</button>
+                    <button id="attachment-button">Pièce jointe</button>
+                </div>
+            </div>
+
+            <!-- Modal pour la création de groupe -->
+            <div id="create-group-modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeCreateGroupModal()">&times;</span>
+                    <h2>Créer un groupe</h2>
+                    <input type="text" id="group-name" placeholder="Nom du groupe">
+                    <button onclick="createGroup()">Créer</button>
+                </div>
+            </div>
+
+            <!-- Video Call Container (Placeholder) -->
+            <div id="video-call-container">
+                <div class="modal-content">
+                    <video id="local-video" autoplay muted></video>
+                    <video id="remote-video" autoplay></video>
+                    <div class="controls">
+                        <button id="hangup-button">Raccrocher</button>
+                        <button id="mute-button">Désactiver le son</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Organi'Sco</p>
+    </footer>
+
+    <script>
+        // ... (Existing JavaScript) ...
+
+        const videoCallButton = document.getElementById('video-call-button');
+        const videoCallContainer = document.getElementById('video-call-container');
+        const hangupButton = document.getElementById('hangup-button');
+
+        videoCallButton.addEventListener('click', () => {
+            // 1. Initiate a video call using Twilio or Vonage
+            // 2. Replace the placeholder video elements with actual video streams
+            // 3. Show the video call container
+            videoCallContainer.style.display = 'block';
+        });
+
+        hangupButton.addEventListener('click', () => {
+            // 1. End the video call using Twilio or Vonage
+            // 2. Hide the video call container
+            videoCallContainer.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

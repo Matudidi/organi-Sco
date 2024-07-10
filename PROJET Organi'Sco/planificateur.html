@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Organi'Sco - Planificateur</title>
+    <style>
+        body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: rgb(59, 59, 247); 
+    padding: 10px;
+    color: orange;
+    position: fixed;
+    width: 100%;
+    z-index: 111;
+}
+
+header .active{
+    background-color: #222;
+    padding: 1rem;
+    border-radius: .5rem;
+}
+
+header a{
+    text-decoration: none;
+    color: #fff;
+}
+
+header nav{
+    display: flex;
+    justify-content: center;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+main {
+    position: relative;
+    top: 7rem;
+    padding: 20px;
+    
+}
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        /* Styles spécifiques aux sections */
+        #planner-view {
+            /* Styles pour l'affichage du planificateur */
+            width: 100%;
+            height: 500px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        #planner-view table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #planner-view th,
+        #planner-view td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        #planner-view th {
+            background-color: #f0f0f0;
+        }
+
+        #add-task-form {
+            margin-top: 20px;
+        }
+
+        #add-task-form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        #add-task-form input[type="text"],
+        #add-task-form input[type="time"],
+        #add-task-form textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        #add-task-form button {
+            padding: 8px 15px;
+            background-color: #4CAF50; /* Green */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Organi'Sco</h1>
+        <nav>
+            <ul>
+                <li><a href="calendrier.html">Calendrier</a></li>
+                <li><a href="gestionDevoir.html">Devoirs</a></li>
+                <li><a href="planificateur.html">Planificateur</a></li>
+                <li><a href="resource.html">Ressources</a></li>
+                <li><a href="collaboration.html">Collaboration</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="planner">
+            <h2>Planificateur de Temps</h2>
+            <div id="planner-view">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Heure</th>
+                            <th>Lundi</th>
+                            <th>Mardi</th>
+                            <th>Mercredi</th>
+                            <th>Jeudi</th>
+                            <th>Vendredi</th>
+                            <th>Samedi</th>
+                            <th>Dimanche</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Tâches seront affichées ici -->
+                    </tbody>
+                </table>
+            </div>
+
+            <form id="add-task-form">
+                <label for="task-name">Nom de la tâche:</label>
+                <input type="text" id="task-name" name="task-name" required>
+
+                <label for="task-day">Jour:</label>
+                <select id="task-day" name="task-day">
+                    <option value="lundi">Lundi</option>
+                    <option value="mardi">Mardi</option>
+                    <option value="mercredi">Mercredi</option>
+                    <option value="jeudi">Jeudi</option>
+                    <option value="vendredi">Vendredi</option>
+                    <option value="samedi">Samedi</option>
+                    <option value="dimanche">Dimanche</option>
+                </select>
+
+                <label for="task-start-time">Heure de début:</label>
+                <input type="time" id="task-start-time" name="task-start-time" required>
+
+                <label for="task-duration">Durée (en minutes):</label>
+                <input type="number" id="task-duration" name="task-duration" min="1" required>
+
+                <button type="submit">Ajouter une tâche</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Organi'Sco</p>
+    </footer>
+
+    <script>
+        // JavaScript pour gérer le planificateur (à compléter)
+        const plannerView = document.getElementById('planner-view');
+        const addTaskForm = document.getElementById('add-task-form');
+
+        addTaskForm.addEventListener('submit', (event) => {
+            event.preventDefault(); // Empêche le rechargement de la page
+
+            // Récupérer les données du formulaire
+            const taskName = document.getElementById('task-name').value;
+            const taskDay = document.getElementById('task-day').value;
+            const taskStartTime = document.getElementById('task-start-time').value;
+            const taskDuration = document.getElementById('task-duration').value;
+
+            // Créer un nouvel élément pour la tâche
+            const newTaskItem = document.createElement('tr');
+            newTaskItem.innerHTML = `
+                <td>${taskStartTime}</td>
+                <td>${taskDay === 'lundi' ? taskName : ''}</td>
+                <td>${taskDay === 'mardi' ? taskName : ''}</td>
+                <td>${taskDay === 'mercredi' ? taskName : ''}</td>
+                <td>${taskDay === 'jeudi' ? taskName : ''}</td>
+                <td>${taskDay === 'vendredi' ? taskName : ''}</td>
+                <td>${taskDay === 'samedi' ? taskName : ''}</td>
+                <td>${taskDay === 'dimanche' ? taskName : ''}</td>
+            `;
+
+            // Ajouter le nouvel élément au planificateur
+            plannerView.querySelector('tbody').appendChild(newTaskItem);
+
+            // Effacer le formulaire
+            addTaskForm.reset();
+        });
+    </script>
+</body>
+</html>

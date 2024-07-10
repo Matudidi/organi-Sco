@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Organi'Sco - Devoirs</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+    
+    body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: rgb(59, 59, 247); 
+    padding: 10px;
+    color: orange;
+    position: fixed;
+    width: 100%;
+    z-index: 111;
+}
+
+header .active{
+    background-color: #222;
+    padding: 1rem;
+    border-radius: .5rem;
+}
+
+header a{
+    text-decoration: none;
+    color: #fff;
+}
+
+header nav{
+    display: flex;
+    justify-content: center;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+main {
+    position: relative;
+    top: 7rem;
+    padding: 20px;
+    
+}
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        /* Styles spécifiques aux sections */
+        #homework-list {
+            margin-top: 20px;
+        }
+
+        #homework-list li {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        #homework-list li.priority {
+            background-color: #fffacd; /* Light yellow for priority */
+        }
+
+        #add-homework-form {
+            margin-top: 20px;
+        }
+
+        #add-homework-form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        #add-homework-form input[type="text"],
+        #add-homework-form input[type="date"],
+        #add-homework-form textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        #add-homework-form input[type="file"] {
+            margin-bottom: 10px;
+        }
+
+        #add-homework-form button {
+            padding: 8px 15px;
+            background-color: #4CAF50; /* Green */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Organi'Sco</h1>
+        <nav>
+            <ul>
+                <li><a href="calendrier.html">Calendrier</a></li>
+                <li><a href="gestionDevoir.html">Devoirs</a></li>
+                <li><a href="planificateur.html">Planificateur</a></li>
+                <li><a href="resource.html">Ressources</a></li>
+                <li><a href="collaboration.html">Collaboration</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="homework">
+            <h2>Gestion des Devoirs</h2>
+            <ul id="homework-list">
+                <!-- Devoirs seront affichés ici -->
+            </ul>
+
+            <form id="add-homework-form">
+                <label for="subject">Matière:</label>
+                <input type="text" id="subject" name="subject" required>
+
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="4" required></textarea>
+
+                <label for="deadline">Date limite:</label>
+                <input type="date" id="deadline" name="deadline" required>
+
+                <label for="resources">Ressources:</label>
+                <input type="file" id="resources" name="resources" multiple>
+
+                <input type="checkbox" id="priority" name="priority">
+                <label for="priority">Prioritaire</label>
+
+                <button type="submit">Ajouter un devoir</button>
+                <img src="">
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p></p>
+    </footer>
+
+    <script>
+        // JavaScript pour gérer les devoirs (à compléter)
+        const homeworkList = document.getElementById('homework-list');
+        const addHomeworkForm = document.getElementById('add-homework-form');
+
+        addHomeworkForm.addEventListener('submit', (event) => {
+            event.preventDefault(); // Empêche le rechargement de la page
+
+            // Récupérer les données du formulaire
+            const subject = document.getElementById('subject').value;
+            const description = document.getElementById('description').value;
+            const deadline = document.getElementById('deadline').value;
+            const resources = document.getElementById('resources').files;
+            const priority = document.getElementById('priority').checked;
+
+            // Créer un nouvel élément de liste pour le devoir
+            const newHomeworkItem = document.createElement('li');
+            newHomeworkItem.innerHTML = `
+                <h3>${subject}</h3>
+                <p>${description}</p>
+                <p>Date limite: ${deadline}</p>
+                <p>Ressources: ${resources.length > 0 ? '<p>oui</p>' : 'Non'}</p>
+            `;
+
+            // Ajouter la classe "priority" si nécessaire
+            if (priority) {
+                newHomeworkItem.classList.add('priority');
+            }
+
+            // Ajouter le nouvel élément à la liste
+            homeworkList.appendChild(newHomeworkItem);
+
+            // Effacer le formulaire
+            addHomeworkForm.reset();
+        });
+    </script>
+</body>
+</html>

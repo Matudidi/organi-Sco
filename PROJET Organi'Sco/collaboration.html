@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Organi'Sco - Collaboration</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: rgb(59, 59, 247); 
+    padding: 10px;
+    color: orange;
+    position: fixed;
+    width: 100%;
+    z-index: 111;
+}
+
+header .active{
+    background-color: #222;
+    padding: 1rem;
+    border-radius: .5rem;
+}
+
+header a{
+    text-decoration: none;
+    color: #fff;
+}
+
+header nav{
+    display: flex;
+    justify-content: center;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+main {
+    position: relative;
+    top: 7rem;
+    padding: 20px;
+    
+}
+        section {
+            margin-bottom: 30px;
+        }
+
+        /* Styles spécifiques aux sections */
+        #chat-box {
+            width: 100%;
+            height: 300px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow-y: auto; /* Scrollbar for chat messages */
+            padding: 10px;
+        }
+
+        #chat-box .message {
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 5px;
+        }
+
+        #chat-box .message.user {
+            background-color: #f0f0f0;
+        }
+
+        #chat-box .message.other {
+            background-color: #e0f2f7;
+        }
+
+        #chat-message {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        #send-message {
+            padding: 8px 15px;
+            background-color: #4CAF50; /* Green */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #create-group-form {
+            margin-top: 20px;
+        }
+
+        #create-group-form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        #create-group-form input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        #create-group-form button {
+            padding: 8px 15px;
+            background-color: #4CAF50; /* Green */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Organi'Sco</h1>
+        <nav>
+            <ul>
+                <li><a href="calendrier.html">Calendrier</a></li>
+                <li><a href="gestionDevoir.html">Devoirs</a></li>
+                <li><a href="planificateur.html">Planificateur</a></li>
+                <li><a href="resources.html">Ressources</a></li>
+                <li><a href="collaboration.html">Collaboration</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="collaboration">
+            <h2>Collaboration et Communication</h2>
+
+            <div id="chat-box">
+                <!-- Messages seront affichés ici -->
+            </div>
+
+            <input type="text" id="chat-message" placeholder="Entrez un message">
+            <button id="send-message">Envoyer</button>
+
+            <h3>Créer un groupe d'étude</h3>
+            <form id="create-group-form">
+                <label for="group-name">Nom du groupe:</label>
+                <input type="text" id="group-name" name="group-name" required>
+
+                <button type="submit">Créer un groupe</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Organi'Sco</p>
+    </footer>
+
+    <script>
+        // JavaScript pour gérer la collaboration (à compléter)
+        const chatBox = document.getElementById('chat-box');
+        const chatMessageInput = document.getElementById('chat-message');
+        const sendMessageButton = document.getElementById('send-message');
+        const createGroupForm = document.getElementById('create-group-form');
+
+        // Exemple de données de messages (à remplacer par des données réelles)
+        const messagesData = [
+            {
+                sender: "Utilisateur 1",
+                message: "Bonjour à tous!"
+            },
+            {
+                sender: "Utilisateur 2",
+                message: "Salut!"
+            }
+            // ... (Ajouter d'autres messages)
+        ];
+
+        // Afficher les messages initialement
+        displayMessages(messagesData);
+
+        // Gérer l'envoi de messages
+        sendMessageButton.addEventListener('click', () => {
+            const message = chatMessageInput.value;
+            if (message.trim() !== "") {
+                // Ajouter le message à la liste
+                messagesData.push({
+                    sender: "Vous",
+                    message: message
+                });
+                displayMessages(messagesData);
+
+                // Effacer le champ de message
+                chatMessageInput.value = "";
+            }
+        });
+
+        // Gérer la création de groupes
+        createGroupForm.addEventListener('submit', (event) => {
+            event.preventDefault(); // Empêche le rechargement de la page
+
+            // Récupérer le nom du groupe
+            const groupName = document.getElementById('group-name').value;
+
+            // Créer un nouveau groupe (à implémenter)
+            // ...
+
+            // Effacer le formulaire
+            createGroupForm.reset();
+        });
+
+        // Fonction pour afficher les messages
+        function displayMessages(messages) {
+            chatBox.innerHTML = ''; // Effacer la liste actuelle
+
+            messages.forEach(message => {
+                const newMessageItem = document.createElement('div');
+                newMessageItem.classList.add('message');
+                newMessageItem.classList.add(message.sender === "Vous" ? 'user' : 'other');
+                newMessageItem.innerHTML = `
+                    <strong>${message.sender}:</strong> ${message.message}
+                `;
+                chatBox.appendChild(newMessageItem);
+            });
+
+            // Déplacer le scroll vers le bas pour afficher le dernier message
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    </script>
+</body>
+</html>

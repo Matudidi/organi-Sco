@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Organi'Sco - Messagerie</title>
+    <style>
+        /* Styles généraux */
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: rgb(59, 59, 247); 
+            padding: 10px;
+            color: orange;
+            position: fixed;
+            width: 100%;
+            z-index: 111;
+        }
+
+        header .active{
+            background-color: #222;
+            padding: 1rem;
+            border-radius: .5rem;
+        }
+
+        header a{
+            text-decoration: none;
+            color: #fff;
+        }
+
+        header nav{
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        main {
+            position: relative;
+            top: 9rem;
+            padding: 20px;
+            display: flex;
+            grid-template-columns: repeat(auto-fit, minmax(auto 1fr));
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        main section{
+            background-color: rgb(241, 238, 238);
+            width:max-content;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 .3rem blue;
+
+        }
+
+        section {
+            margin-bottom: 30px;
+
+            
+        }
+
+
+        button{
+            background-color: black;
+            padding: 1rem;
+            border: none;
+            outline: none;
+            color: orange;
+            border-radius: 8px;
+        }
+
+        /* Styles pour la messagerie */
+        #messaging-container {
+            width: 600px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #contact-list {
+            list-style: none;
+            padding: 0;
+            height: 200px;
+            overflow-y: auto; /* Add scrollbar if contacts exceed height */
+            margin-bottom: 10px;
+        }
+
+        #contact-list li {
+            margin-bottom: 5px;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+        }
+
+        #chat-area {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #chat-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 5px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        #chat-header h3 {
+            margin: 0;
+        }
+
+        #message-list {
+            list-style: none;
+            padding: 0;
+            flex-grow: 1;
+            overflow-y: auto; /* Add scrollbar if messages exceed height */
+        }
+
+        #message-list li {
+            margin-bottom: 5px;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .user-message {
+            background-color: #eee;
+            text-align: right;
+        }
+
+        .other-message {
+            background-color: #f0f0f0;
+            text-align: left;
+        }
+
+        #input-area {
+            display: flex;
+            margin-top: 10px;
+        }
+
+        #input-text {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #send-button {
+            padding: 10px;
+            margin-left: 5px;
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Styles pour la recherche */
+        #search-bar {
+            margin-bottom: 10px;
+        }
+
+        #search-input {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Styles pour les fonctionnalités avancées */
+        #attachment-button {
+            margin-left: 5px;
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ccc;
+            cursor: pointer;
+        }
+
+        #group-chat-button {
+            margin-left: 5px;
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ccc;
+            cursor: pointer;
+        }
+
+        #audio-call-button {
+            margin-left: 5px;
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ccc;
+            cursor: pointer;
+        }
+
+        #video-call-button {
+            margin-left: 5px;
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ccc;
+            cursor: pointer;
+        }
+
+        #screen-share-button {
+            margin-left: 5px;
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ccc;
+            cursor: pointer;
+        }
+
+        #presence-indicator {
+            margin-left: 10px;
+            font-size: 12px;
+        }
+
+        #presence-indicator.online {
+            color: green;
+        }
+
+        #presence-indicator.offline {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Organi'Sco</h1>
+        <nav>
+            <ul>
+                <li><a href="calendrier.html">Calendrier</a></li>
+                <li><a href="gestionDevoir.html">Devoirs</a></li>
+                <li><a href="planificateur.html">Planificateur</a></li>
+                <li><a href="resource.html">Ressources</a></li>
+                <li><a href="collaboration.html">Collaboration</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="messaging-container">
+            <h2>Messagerie</h2>
+            <div id="search-bar">
+                <input type="text" id="search-input" placeholder="Rechercher des messages ou des contacts">
+            </div>
+            <div id="contact-list">
+                <h3>Contacts</h3>
+                <ul>
+                    <li>Contact 1 <span id="presence-indicator-1" class="online"></span></li>
+                    <li>Contact 2 <span id="presence-indicator-2" class="offline"></span></li>
+                    <li>Contact 3 <span id="presence-indicator-3" class="online"></span></li>
+                </ul>
+            </div>
+            <div id="chat-area">
+                <div id="chat-header">
+                    <h3>Chat avec Contact 1</h3>
+                    <button id="add-contact-button">Ajouter un contact</button>
+                    <button id="group-chat-button">Créer un groupe</button>
+                    <button id="audio-call-button">Appel audio</button>
+                    <button id="video-call-button">Appel vidéo</button>
+                    <button id="screen-share-button">Partage d'écran</button>
+                </div>
+                <ul id="message-list"></ul>
+                <div id="input-area">
+                    <input type="text" id="input-text" placeholder="Entrez votre message">
+                    <button id="send-button">Envoyer</button>
+                    <button id="attachment-button">Pièce jointe</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Organi'Sco</p>
+    </footer>
+
+    <script>
+        const messageList = document.getElementById('message-list');
+        const inputText = document.getElementById('input-text');
+        const sendButton = document.getElementById('send-button');
+
+        sendButton.addEventListener('click', () => {
+            const message = inputText.value;
+            if (message.trim() !== '') {
+                // Add user's message to the chat
+                const messageItem = document.createElement('li');
+                messageItem.classList.add('user-message');
+                messageItem.textContent = message;
+                messageList.appendChild(messageItem);
+
+                // Clear the input field
+                inputText.value = '';
+
+                // Simulate receiving a response (replace with actual server communication)
+                setTimeout(() => {
+                    const responseItem = document.createElement('li');
+                    responseItem.classList.add('other-message');
+                    responseItem.textContent = 'Contact 1: ' + message; // Example response
+                    messageList.appendChild(responseItem);
+                }, 1000); // Delay for 1 second
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Organi'Sco - Calendrier</title>
+    <style>
+        body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: rgb(59, 59, 247); 
+    padding: 10px;
+    color: orange;
+    position: fixed;
+    width: 100%;
+    z-index: 111;
+}
+
+header .active{
+    background-color: #222;
+    padding: 1rem;
+    border-radius: .5rem;
+}
+
+header a{
+    text-decoration: none;
+    color: #fff;
+}
+
+header nav{
+    display: flex;
+    justify-content: center;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+main {
+    position: relative;
+    top: 7rem;
+    padding: 20px;
+    
+}
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        /* Styles spécifiques aux sections */
+        #calendar-view {
+            /* Styles pour l'affichage du calendrier */
+            width: 100%;
+            height: 500px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        #add-event-form {
+            margin-top: 20px;
+        }
+
+        #add-event-form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        #add-event-form input[type="text"],
+        #add-event-form input[type="date"],
+        #add-event-form textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        #add-event-form button {
+            padding: 8px 15px;
+            background-color: #4CAF50; /* Green */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Organi'Sco</h1>
+        <nav>
+            <ul>
+                <li><a class="active" href="calendrier.html">Calendrier</a></li>
+                <li><a href="gestionDevoir.html">Devoirs</a></li>
+                <li><a href="planificateur.html">Planificateur</a></li>
+                <li><a href="resource.html">Ressources</a></li>
+                <li><a href="collaboration.html">Collaboration</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="calendar">
+            <h2>Calendrier Scolaire</h2>
+            <div id="calendar-view"></div>
+
+            <form id="add-event-form">
+                <label for="event-title">Titre de l'événement:</label>
+                <input type="text" id="event-title" name="event-title" required>
+
+                <label for="event-date">Date:</label>
+                <input type="date" id="event-date" name="event-date" required>
+
+                <label for="event-description">Description:</label>
+                <textarea id="event-description" name="event-description" rows="4"></textarea>
+
+                <button type="submit">Ajouter un événement</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Organi'Sco</p>
+    </footer>
+
+    <script>
+        // JavaScript pour gérer le calendrier (à compléter)
+        const calendarView = document.getElementById('calendar-view');
+        const addEventForm = document.getElementById('add-event-form');
+
+        addEventForm.addEventListener('submit', (event) => {
+            event.preventDefault(); // Empêche le rechargement de la page
+
+            // Récupérer les données du formulaire
+            const eventTitle = document.getElementById('event-title').value;
+            const eventDate = document.getElementById('event-date').value;
+            const eventDescription = document.getElementById('event-description').value;
+
+            // Créer un nouvel élément pour l'événement
+            const newEventItem = document.createElement('div');
+            newEventItem.innerHTML = `
+                <h3>${eventTitle}</h3>
+                <p>Date: ${eventDate}</p>
+                <p>${eventDescription}</p>
+            `;
+
+            // Ajouter le nouvel élément au calendrier
+            calendarView.appendChild(newEventItem);
+
+            // Effacer le formulaire
+            addEventForm.reset();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Organi'Sco - Messagerie</title>
+    <style>
+        /* ... (Existing styles) ... */
+
+        /* Styles for the file input */
+        #attachment-input {
+            display: none; /* Hide the input by default */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Organi'Sco</h1>
+        <nav>
+            <ul>
+                <li><a href="calendrier.html">Calendrier</a></li>
+                <li><a href="gestionDevoir.html">Devoirs</a></li>
+                <li><a href="planificateur.html">Planificateur</a></li>
+                <li><a href="resource.html">Ressources</a></li>
+                <li><a href="collaboration.html">Collaboration</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="messaging-container">
+            <h2>Messagerie</h2>
+            <div id="search-bar">
+                <input type="text" id="search-input" placeholder="Rechercher des messages ou des contacts">
+            </div>
+            <div id="contact-list">
+                <h3>Contacts</h3>
+                <ul>
+                    <li><img src="https://via.placeholder.com/40" alt="Contact 1"> Contact 1 <span id="presence-indicator-1" class="online"></span></li>
+                    <li><img src="https://via.placeholder.com/40" alt="Contact 2"> Contact 2 <span id="presence-indicator-2" class="offline"></span></li>
+                    <li><img src="https://via.placeholder.com/40" alt="Contact 3"> Contact 3 <span id="presence-indicator-3" class="online"></span></li>
+                </ul>
+            </div>
+            <div id="chat-area">
+                <div id="chat-header">
+                    <h3>Chat avec Contact 1</h3>
+                    <button id="add-contact-button">Ajouter un contact</button>
+                    <button id="group-chat-button">Créer un groupe</button>
+                    <button id="audio-call-button">Appel audio</button>
+                    <button id="video-call-button">Appel vidéo</button>
+                    <button id="screen-share-button">Partage d'écran</button>
+                </div>
+                <ul id="message-list"></ul>
+                <div id="input-area">
+                    <input type="text" id="input-text" placeholder="Entrez votre message">
+                    <button id="send-button">Envoyer</button>
+                    <button id="attachment-button">Pièce jointe</button>
+                    <input type="file" id="attachment-input">
+                </div>
+            </div>
+
+            <!-- Modal pour la création de groupe -->
+            <div id="create-group-modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeCreateGroupModal()">&times;</span>
+                    <h2>Créer un groupe</h2>
+                    <input type="text" id="group-name" placeholder="Nom du groupe">
+                    <button onclick="createGroup()">Créer</button>
+                </div>
+            </div>
+
+            <!-- Video Call Container (Placeholder) -->
+            <div id="video-call-container">
+                <div class="modal-content">
+                    <video id="local-video" autoplay muted></video>
+                    <video id="remote-video" autoplay></video>
+                    <div class="controls">
+                        <button id="hangup-button">Raccrocher</button>
+                        <button id="mute-button">Désactiver le son</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Organi'Sco</p>
+    </footer>
+
+    <script>
+        // ... (Existing JavaScript) ...
+
+        const attachmentButton = document.getElementById('attachment-button');
+        const attachmentInput = document.getElementById('attachment-input');
+
+        attachmentButton.addEventListener('click', () => {
+            attachmentInput.click(); // Trigger the file input
+        });
+
+        attachmentInput.addEventListener('change', () => {
+            const file = attachmentInput.files[0];
+            if (file) {
+                // 1. Handle the file upload (send it to your server)
+                // 2. Display a message indicating the file is being uploaded
+                // 3. Once uploaded, you can display a link to the file in the chat
+                console.log('File selected:', file);
+            }
+        });
+    </script>
+</body>
+</html>
