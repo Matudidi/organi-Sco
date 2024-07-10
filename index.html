@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Organi'Sco</title>
+    <style>
+        /* Styles généraux */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: rgb(59, 59, 247); 
+    padding: 10px;
+    color: orange;
+    position: fixed;
+    width: 100%;
+    z-index: 111;
+}
+
+header .active{
+    background-color: #222;
+    padding: 1rem;
+    border-radius: .5rem;
+}
+
+header a{
+    text-decoration: none;
+    color: #fff;
+}
+
+header nav{
+    display: flex;
+    justify-content: center;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+main {
+    position: relative;
+    top: 9rem;
+    padding: 20px;
+    display: flex;
+    grid-template-columns: repeat(auto-fit, minmax(auto 1fr));
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+main section{
+    background-color: rgb(241, 238, 238);
+    width:max-content;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 .3rem blue;
+
+}
+
+section {
+    margin-bottom: 30px;
+
+    
+}
+
+
+button{
+    background-color: black;
+    padding: 1rem;
+    border: none;
+    outline: none;
+    color: orange;
+    border-radius: 8px;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Organi'Sco</h1>
+        <nav>
+            <ul>
+                <li><a href="calendrier.html">Calendrier</a></li>
+                <li><a href="gestionDevoir.html">Devoirs</a></li>
+                <li><a href="planificateur.html">Planificateur</a></li>
+                <li><a href="resource.html">Ressources</a></li>
+                <li><a href="collaboration.html">Collaboration</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="calendar">
+            <h2>Calendrier Scolaire</h2>
+            <div id="calendar-view"></div>
+            <button id="add-event">Ajouter un événement</button>
+        </section>
+
+        <section id="homework">
+            <h2>Gestion des Devoirs</h2>
+            <div id="homework-list"></div>
+            <button id="add-homework">Ajouter un devoir</button>
+        </section>
+
+        <section id="planner">
+            <h2>Planificateur de Temps</h2>
+            <div id="planner-view"></div>
+        </section>
+
+        <section id="resources">
+            <h2>Ressources d'Apprentissage</h2>
+            <div id="resources-list"></div>
+            <input type="text" id="search-resources" placeholder="Rechercher des ressources">
+        </section>
+
+        <section id="collaboration">
+            <h2>Collaboration et Communication</h2>
+            <div id="chat-box"></div>
+            <input type="text" id="chat-message" placeholder="Entrez un message">
+            <button id="send-message">Envoyer</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Organi'Sco</p>
+    </footer>
+
+    <script>
+        // Calendrier
+const calendarView = document.getElementById('calendar-view');
+const addEventButton = document.getElementById('add-event');
+
+// Gestion des devoirs
+const homeworkList = document.getElementById('homework-list');
+const addHomeworkButton = document.getElementById('add-homework');
+
+// Planificateur de temps
+const plannerView = document.getElementById('planner-view');
+
+// Ressources d'apprentissage
+const resourcesList = document.getElementById('resources-list');
+const searchResourcesInput = document.getElementById('search-resources');
+
+// Collaboration et communication
+const chatBox = document.getElementById('chat-box');
+const chatMessageInput = document.getElementById('chat-message');
+const sendMessageButton = document.getElementById('send-message');
+
+// Fonctions JavaScript pour chaque fonctionnalité
+addEventButton.addEventListener('click', () => {
+    // Code pour ajouter un événement au calendrier
+});
+
+addHomeworkButton.addEventListener('click', () => {
+    // Code pour ajouter un devoir à la liste
+});
+
+// ... (Autres fonctions pour les autres fonctionnalités)
+
+    </script>
+</body>
+</html>

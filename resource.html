@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Organi'Sco - Ressources</title>
+
+    <style>
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: rgb(59, 59, 247); 
+    padding: 10px;
+    color: orange;
+    position: fixed;
+    width: 100%;
+    z-index: 111;
+}
+
+header .active{
+    background-color: #222;
+    padding: 1rem;
+    border-radius: .5rem;
+}
+
+header a{
+    text-decoration: none;
+    color: #fff;
+}
+
+header nav{
+    display: flex;
+    justify-content: center;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+main {
+    position: relative;
+    top: 7rem;
+    padding: 20px;
+    
+}
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        /* Styles spécifiques aux sections */
+        #resources-list {
+            margin-top: 20px;
+        }
+
+        #resources-list li {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        #search-resources {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Organi'Sco</h1>
+        <nav>
+            <ul>
+                <li><a href="calendrier.html">Calendrier</a></li>
+                <li><a href="gestionDevoir.html">Devoirs</a></li>
+                <li><a href="planificateur.html">Planificateur</a></li>
+                <li><a href="resource.html">Ressources</a></li>
+                <li><a href="collaboration.html">Collaboration</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="resources">
+            <h2>Ressources d'Apprentissage</h2>
+            <input type="text" id="search-resources" placeholder="Rechercher des ressources">
+
+            <ul id="resources-list">
+                <!-- Ressources seront affichées ici -->
+                <li>
+                    <h3>Khan Academy</h3>
+                    <a href="https://www.khanacademy.org/" target="_blank">Visiter le site</a>
+                </li>
+                <li>
+                    <h3>Duolingo</h3>
+                    <a href="https://www.duolingo.com/" target="_blank">Visiter le site</a>
+                </li>
+                <li>
+                    <h3>YouTube Education</h3>
+                    <a href="https://www.youtube.com/education" target="_blank">Visiter le site</a>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Organi'Sco</p>
+    </footer>
+
+    <script>
+        // JavaScript pour gérer les ressources (à compléter)
+        const resourcesList = document.getElementById('resources-list');
+        const searchResourcesInput = document.getElementById('search-resources');
+
+        // Exemple de données de ressources (à remplacer par des données réelles)
+        const resourcesData = [
+            {
+                title: "Khan Academy",
+                url: "https://www.khanacademy.org/",
+                description: "Apprentissage gratuit en ligne pour tous les âges."
+            },
+            {
+                title: "Duolingo",
+                url: "https://www.duolingo.com/",
+                description: "Apprendre des langues gratuitement."
+            },
+            {
+                title: "YouTube Education",
+                url: "https://www.youtube.com/education",
+                description: "Tutoriels vidéo éducatifs."
+            }
+            // ... (Ajouter d'autres ressources)
+        ];
+
+        // Afficher les ressources initialement
+        displayResources(resourcesData);
+
+        // Gérer la recherche
+        searchResourcesInput.addEventListener('input', () => {
+            const searchTerm = searchResourcesInput.value.toLowerCase();
+            const filteredResources = resourcesData.filter(resource => {
+                return resource.title.toLowerCase().includes(searchTerm) ||
+                       resource.description.toLowerCase().includes(searchTerm);
+            });
+            displayResources(filteredResources);
+        });
+
+        // Fonction pour afficher les ressources
+        function displayResources(resources) {
+            resourcesList.innerHTML = ''; // Effacer la liste actuelle
+
+            resources.forEach(resource => {
+                const newResourceItem = document.createElement('li');
+                newResourceItem.innerHTML = `
+                    <h3>${resource.title}</h3>
+                    <p>${resource.description}</p>
+                    <a href="${resource.url}" target="_blank">Visiter le site</a>
+                `;
+                resourcesList.appendChild(newResourceItem);
+            });
+        }
+    </script>
+</body>
+</html>
